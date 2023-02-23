@@ -10,34 +10,35 @@ public class Mouse : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] RawImage mouseUI;
-    [SerializeField] GameObject mousePad;
     [SerializeField] float mouseSpeedScale;
 
     private Vector3 previousPos;
-
-    private Vector2 maxPoint;
-    private Vector2 minPoint;
-
    
     void Start()
     {
         previousPos = transform.position;
-     
-        Bounds parentBounds = mousePad.GetComponentInParent<Renderer>().bounds;
-        maxPoint = new Vector2(parentBounds.max.x, parentBounds.max.z);
-        minPoint = new Vector2(parentBounds.min.x, parentBounds.min.z);
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.collider.GetType() == typeof(BoxCollider))
+        {
+            MoveMouseUI();    
+        }
+
+        else if (collision.collider.GetType() == typeof(MeshCollider)) { }
+    }
+
+    void MoveMouseUI()
+    {
         Vector3 current = transform.position;
-        current.x = Mathf.Clamp(current.x, minPoint.x, maxPoint.x);
-        current.z = Mathf.Clamp(current.z, minPoint.y, maxPoint.y);
-
-        transform.position = current;
-
-        if(current != previousPos)
+        if (current != previousPos)
         {
 
             Vector2 difference = new Vector2(current.x - previousPos.x, current.z - previousPos.z);
@@ -67,5 +68,4 @@ public class Mouse : MonoBehaviour
 
        mouse.localPosition = pos;
     }
-
 }
