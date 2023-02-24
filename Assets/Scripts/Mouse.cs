@@ -12,7 +12,7 @@ public class Mouse : MonoBehaviour
     [SerializeField] RawImage mouseUI;
     [SerializeField] float mouseSpeedScale;
 
-    private Vector3 previousPos;
+    private Vector3? previousPos;
    
     void Start()
     {
@@ -35,13 +35,21 @@ public class Mouse : MonoBehaviour
         else if (collision.collider.GetType() == typeof(MeshCollider)) { }
     }
 
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.collider.GetType() == typeof(BoxCollider))
+        {
+            previousPos = null;
+        }
+    }
+
     void MoveMouseUI()
     {
         Vector3 current = transform.position;
-        if (current != previousPos)
+        if (previousPos.HasValue && current != previousPos)
         {
 
-            Vector2 difference = new Vector2(current.x - previousPos.x, current.z - previousPos.z);
+            Vector2 difference = new Vector2(current.x - previousPos.Value.x, current.z - previousPos.Value.z);
             difference *= mouseSpeedScale;
 
             Vector3 mouseUIPos = mouseUI.GetComponent<RectTransform>().localPosition;
@@ -49,8 +57,8 @@ public class Mouse : MonoBehaviour
             mouseUI.GetComponent<RectTransform>().localPosition = finalPos;
 
             ClampMouseToUI();
-            previousPos = current;
         }
+        previousPos = current;
     }
 
     void ClampMouseToUI()
