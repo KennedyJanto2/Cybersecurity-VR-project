@@ -9,7 +9,7 @@ using static UnityEngine.InputSystem.Controls.AxisControl;
 public class Mouse : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] RawImage mouseUI;
+    [SerializeField] Pointer pointer;
     [SerializeField] float mouseSpeedScale;
 
     private Vector3? previousPos;
@@ -52,28 +52,8 @@ public class Mouse : MonoBehaviour
             Vector2 difference = new Vector2(current.x - previousPos.Value.x, current.z - previousPos.Value.z);
             difference *= mouseSpeedScale;
 
-            Vector3 mouseUIPos = mouseUI.GetComponent<RectTransform>().localPosition;
-            Vector3 finalPos = new Vector3(difference.x + mouseUIPos.x, difference.y + mouseUIPos.y, mouseUIPos.z);
-            mouseUI.GetComponent<RectTransform>().localPosition = finalPos;
-
-            ClampMouseToUI();
+            pointer.SetUIPosition(difference);
         }
         previousPos = current;
-    }
-
-    void ClampMouseToUI()
-    {
-        RectTransform mouse = mouseUI.GetComponentInParent<RectTransform>();
-        RectTransform canvas = mouseUI.transform.parent.gameObject.GetComponent<RectTransform>();
-
-        Vector3 pos = mouseUI.GetComponent<RectTransform>().localPosition;
-
-        Vector3 minPosition = canvas.rect.min - mouse.rect.min;
-        Vector3 maxPosition = canvas.rect.max - mouse.rect.max;
-
-        pos.x = Mathf.Clamp(mouse.localPosition.x, minPosition.x, maxPosition.x);
-        pos.y = Mathf.Clamp(mouse.localPosition.y, minPosition.y, maxPosition.y);
-
-       mouse.localPosition = pos;
     }
 }
