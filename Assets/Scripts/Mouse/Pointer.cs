@@ -16,6 +16,17 @@ public class Pointer : MonoBehaviour
     {
         
     }
+   
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("TRIGGERED");
+
+        IClickable obj = collision.gameObject.GetComponent<IClickable>();
+        if (obj != null)
+        {
+            obj.Click();
+        }
+    }
 
     public void SetUIPosition(Vector2 difference)
     {
