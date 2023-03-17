@@ -31,7 +31,6 @@ public class QuestionUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(currentQuestion + " " + displayedQuestion);
         if(currentQuestion != displayedQuestion && currentQuestion < questions.questions.Count)
         {
             ClearQuestions();
