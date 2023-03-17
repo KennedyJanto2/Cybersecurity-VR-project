@@ -49,7 +49,7 @@ public class Mouse : MonoBehaviour
         if (previousPos.HasValue && current != previousPos)
         {
 
-            Vector2 difference = new Vector2(current.x - previousPos.Value.x, current.z - previousPos.Value.z);
+            Vector2 difference = new Vector2(previousPos.Value.z- current.z , current.x - previousPos.Value.x);
             difference *= mouseSpeedScale;
 
             pointer.SetUIPosition(difference);
