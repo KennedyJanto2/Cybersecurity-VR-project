@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class QuestionUI : MonoBehaviour
 {
@@ -20,7 +21,11 @@ public class QuestionUI : MonoBehaviour
 
     private int currentQuestion;
     private int displayedQuestion;
-    
+
+
+    public int startingPoints = 0;
+    public Text pointsTracker;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,15 +33,27 @@ public class QuestionUI : MonoBehaviour
         displayedQuestion = -1;
     }
 
+
     // Update is called once per frame
     void Update()
     {
-        if(currentQuestion != displayedQuestion && currentQuestion < questions.questions.Count)
+        pointsTracker.text = "Total Points: " + startingPoints;
+        if (currentQuestion != displayedQuestion && currentQuestion < questions.questions.Count)
         {
             ClearQuestions();
             displayedQuestion = currentQuestion;
             DisplayQuestion(currentQuestion);
         }
+
+        
+    }
+
+    public InputActionProperty action;
+
+    void OnEnable()
+    {
+        action.action.Enable();
+        action.action.performed += (e) => { startingPoints++; };
     }
 
     public void SetCurrentQuestion(int currentQuestion)
@@ -77,6 +94,7 @@ public class QuestionUI : MonoBehaviour
             if(question.correctOption == i)
             {
                 CorrectOptionButton cb = option.gameObject.AddComponent<CorrectOptionButton>();
+                startingPoints++;
             }
         }
     }
@@ -88,4 +106,6 @@ public class QuestionUI : MonoBehaviour
             Destroy(child.gameObject);
         }
     }
+
+
 }
