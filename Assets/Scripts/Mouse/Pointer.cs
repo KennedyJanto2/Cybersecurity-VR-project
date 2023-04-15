@@ -28,6 +28,17 @@ public class Pointer : MonoBehaviour
         }
     }
 
+    //one minor bug is that if the user moves the mouse and enters the trigger it sets the index, but if they don't click and move it outside of the trigger and just click then the next question still gets loaded.
+    //As another easy fix added a OnTriggeExit2D and made it unset the index. 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        IClickable obj = collision.gameObject.GetComponent<IClickable>();
+        if (obj != null)
+        {
+            obj.UnClick();
+        }
+    }
+
     public void SetUIPosition(Vector2 difference)
     {
         Vector3 mouseUIPos = this.GetComponent<RectTransform>().localPosition;

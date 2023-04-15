@@ -98,8 +98,6 @@ public class QuestionUI : MonoBehaviour
         clickedOptionIndex = optionIndex;
     }
 
-
-
     void ClearQuestions()
     {
         foreach (Transform child in gameObject.transform)

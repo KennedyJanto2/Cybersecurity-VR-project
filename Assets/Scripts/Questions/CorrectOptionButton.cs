@@ -19,6 +19,12 @@ public class CorrectOptionButton : MonoBehaviour, IClickable
         StartCoroutine(feedback());
     }
 
+    public void UnClick()
+    {
+        questionUI.SetClickedOption(-1); //one minor bug is that if the user moves the mouse and enters the trigger it sets the index, but if they don't click and move it outside of the trigger and just click then the next question still gets loaded.
+                                         //As another easy fix added a OnTriggeExit2D and made it unset the index. 
+    }
+
     IEnumerator feedback()
     {
         questionUI.SetClickedOption(optionIndex);
