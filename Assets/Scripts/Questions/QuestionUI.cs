@@ -43,7 +43,7 @@ public class QuestionUI : MonoBehaviour
             bool correctAnswer = false;
 
             //TODO Check mouse to see which answer is selected and set correctAnswer to true if its the right one
-            if ( && clickedOptionIndex == questionCollections[currentQuestionCollectionIndex].correctAnswer)
+            if (clickedOptionIndex == questionCollections[currentQuestionCollectionIndex].correctAnswer)
                 correctAnswer = true;
 
             //Update UI
