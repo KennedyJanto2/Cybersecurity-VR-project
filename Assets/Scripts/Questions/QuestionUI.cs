@@ -22,6 +22,7 @@ public class QuestionUI : MonoBehaviour
     [SerializeField] float questionOptionPaddingRatio;
 
     private int currentQuestionCollectionIndex = 0;
+    private int clickedOptionIndex = -1;
 
     public int currentPoints = 0;
 
@@ -38,21 +39,27 @@ public class QuestionUI : MonoBehaviour
 
     public void Mousepressed(Hand hand, Grabbable clicked)
     {
-        bool correctAnswer = false;
+        if (clickedOptionIndex != -1) {
+            bool correctAnswer = false;
 
-        //TODO Check mouse to see which answer is selected and set correctAnswer to true if its the right one
-        correctAnswer = true;
+            //TODO Check mouse to see which answer is selected and set correctAnswer to true if its the right one
+            if ( && clickedOptionIndex == questionCollections[currentQuestionCollectionIndex].correctAnswer)
+                correctAnswer = true;
 
-        //Update UI
-        if (correctAnswer)
-        {
-            currentPoints++;
-            pointsTracker.text = "Total Points: " + currentPoints + " out of " + questionCollections.Count;
+            //Update UI
+            if (correctAnswer)
+            {
+                currentPoints++;
+                pointsTracker.text = "Total Points: " + currentPoints + " out of " + questionCollections.Count;
+            }
+
+            clickedOptionIndex = -1;
+            ClearQuestions();
+            currentQuestionCollectionIndex++;
+            DisplayQuestion(currentQuestionCollectionIndex);
         }
-        ClearQuestions();
-        currentQuestionCollectionIndex++;
-        DisplayQuestion(currentQuestionCollectionIndex);
     }
+
      void DisplayQuestion(int id)
     {
         QuestionCollection questionCollection = questionCollections[id];
@@ -81,10 +88,17 @@ public class QuestionUI : MonoBehaviour
             if (questionCollection.correctAnswer == i)
             {
                 ////TODO: This most likely detects the collider. Switch it out for mouse click
-                //CorrectOptionButton cb = option.gameObject.AddComponent<CorrectOptionButton>();
+                CorrectOptionButton cb = option.gameObject.AddComponent<CorrectOptionButton>();
             }
         }
     }
+
+    public void SetClickedOption(int optionIndex)
+    {
+        clickedOptionIndex = optionIndex;
+    }
+
+
 
     void ClearQuestions()
     {

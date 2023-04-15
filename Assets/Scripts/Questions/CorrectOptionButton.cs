@@ -6,25 +6,25 @@ using UnityEngine;
 public class CorrectOptionButton : MonoBehaviour, IClickable
 {
     private QuestionUI questionUI;
-    private int currentQuestion;
+    private int optionIndex;
 
-    void Start()
+    public void SetOptionIndex(int index)
     {
-        questionUI = gameObject.transform.parent.GetComponent<QuestionUI>();
-        currentQuestion = questionUI.GetDisplayedQuestion();
+        optionIndex = index;
     }
 
     public void Click()
     {
+        questionUI = gameObject.transform.parent.GetComponent<QuestionUI>();
         StartCoroutine(feedback());
     }
 
     IEnumerator feedback()
     {
+        questionUI.SetClickedOption(optionIndex);
         Debug.Log("CORRECT");
         gameObject.GetComponent<TextMeshProUGUI>().color = Color.green;
         yield return new WaitForSeconds(2);
         Debug.Log("HERE");
-        questionUI.SetCurrentQuestion(currentQuestion + 1);
     }
 }
