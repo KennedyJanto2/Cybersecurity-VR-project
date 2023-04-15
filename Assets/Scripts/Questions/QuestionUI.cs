@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
+using Autohand;
 
 public class QuestionUI : MonoBehaviour
 {
-    [SerializeField] QuestionCollection questions;
+    public Hand hand;
+    [SerializeField] public List<QuestionCollection> questionCollections;
 
     [SerializeField] Canvas canvas;
 
@@ -18,66 +21,67 @@ public class QuestionUI : MonoBehaviour
     [SerializeField] float ypaddingRatio;
     [SerializeField] float questionOptionPaddingRatio;
 
-    private int currentQuestion;
-    private int displayedQuestion;
-    
+    private int currentQuestionCollectionIndex = 0;
+
+    public int currentPoints = 0;
+
+    public Text pointsTracker;
+
     // Start is called before the first frame update
     void Start()
     {
-        currentQuestion = 0;
-        displayedQuestion = -1;
+        ShuffleList(questionCollections);
+        pointsTracker.text = "Total Points: " + currentPoints;
+
+        hand.OnSqueezed += Mousepressed;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Mousepressed(Hand hand, Grabbable clicked)
     {
-        Debug.Log(currentQuestion + " " + displayedQuestion);
-        if(currentQuestion != displayedQuestion && currentQuestion < questions.questions.Count)
+        bool correctAnswer = false;
+
+        //TODO Check mouse to see which answer is selected and set correctAnswer to true if its the right one
+        correctAnswer = true;
+
+        //Update UI
+        if (correctAnswer)
         {
-            ClearQuestions();
-            displayedQuestion = currentQuestion;
-            DisplayQuestion(currentQuestion);
+            currentPoints++;
+            pointsTracker.text = "Total Points: " + currentPoints + " out of " + questionCollections.Count;
         }
+        ClearQuestions();
+        currentQuestionCollectionIndex++;
+        DisplayQuestion(currentQuestionCollectionIndex);
     }
-
-    public void SetCurrentQuestion(int currentQuestion)
+     void DisplayQuestion(int id)
     {
-        this.currentQuestion = currentQuestion;
-    }
-
-    public int GetDisplayedQuestion()
-    {
-        return displayedQuestion;
-    }
-
-    void DisplayQuestion(int id)
-    {
-        Question question = questions.questions[id];
+        QuestionCollection questionCollection = questionCollections[id];
 
         RectTransform canvasRect = canvas.GetComponent<RectTransform>();
         float currentY = canvasRect.rect.height / 2 - canvasRect.rect.height * startingYPaddingRatio;
         float currentX = -canvasRect.rect.width / 2 + canvasRect.rect.width * xPaddingRatio;
 
-        questionPrefab.text = question.question;
+        questionPrefab.text = questionCollection.question;
         Vector3 questionPos = new Vector3(currentX, currentY, 0);
         questionPrefab.GetComponent<RectTransform>().anchoredPosition = questionPos;
 
         Instantiate(questionPrefab, transform);
 
         currentY -= (questionPrefab.GetComponent<RectTransform>().rect.height + canvasRect.rect.height * questionOptionPaddingRatio);
-        for (int i = 0; i < question.options.Count; i++)
+        for (int i = 0; i < questionCollection.possibleAnswers.Count; i++)
         {
             var option = Instantiate(optionPrefab, transform);
             if (i != 0)
                 currentY -= canvasRect.rect.height * ypaddingRatio;
 
-            option.text = question.options[i];
+            option.text = questionCollection.possibleAnswers[i];
             Vector3 optionPos = new Vector3(currentX, currentY, 0);
             option.GetComponent<RectTransform>().anchoredPosition = optionPos;
 
-            if(question.correctOption == i)
+            if (questionCollection.correctAnswer == i)
             {
-                CorrectOptionButton cb = option.gameObject.AddComponent<CorrectOptionButton>();
+                ////TODO: This most likely detects the collider. Switch it out for mouse click
+                //CorrectOptionButton cb = option.gameObject.AddComponent<CorrectOptionButton>();
             }
         }
     }
@@ -88,5 +92,21 @@ public class QuestionUI : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+    }
+    private List<T> ShuffleList<T>(List<T> inputList)
+    {
+        System.Random random = new System.Random();
+        List<T> shuffledList = new List<T>(inputList);
+
+        int n = shuffledList.Count;
+        for (int i = n - 1; i > 0; i--)
+        {
+            int j = random.Next(0, i + 1);
+            T temp = shuffledList[i];
+            shuffledList[i] = shuffledList[j];
+            shuffledList[j] = temp;
+        }
+
+        return shuffledList;
     }
 }

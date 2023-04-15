@@ -5,5 +5,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class QuestionCollection : ScriptableObject
 {
-    public List<Question> questions;
+    public string question;
+    public List<string> possibleAnswers;
+    public int correctAnswer;
 }
