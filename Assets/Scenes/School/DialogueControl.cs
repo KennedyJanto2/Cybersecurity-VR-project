@@ -6,7 +6,6 @@ public class DialogueControl : MonoBehaviour
 {
 
     public static string currentPOS = "Sally";
-    public string SallyInitial = "Hi, I'm here to pick up my daugther. She forgot her homework and I need to give it to her.";
 
     public string SallyA = "Acknowledge her and let her in.";
     public string SallyB = "Refuse her on the spot.";
