@@ -62,8 +62,9 @@ public class DialogueControl : MonoBehaviour
         
     }
     //how the users select/traverse the dialogue is based on which gameObject they selcted.
-    void OnMouseDown()
+    public void OnMouseDown()
     {
+        Debug.Log("Testing");
         currentPOS += gameObject.name;
 
         while(currentPOS != SallyC && currentPOS != SallyCC && currentPOS != SallyCCC) {
