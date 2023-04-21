@@ -7,6 +7,7 @@ using TMPro;
 public class Gameplay : MonoBehaviour
 {
     //script data
+
     string SallyA = "Acknowledge her and let her in.";
     string SallyB = "Refuse her on the spot.";
     string SallyC = "Ask for identification.";
@@ -41,23 +42,100 @@ public class Gameplay : MonoBehaviour
 
 
 
-    [SerializeField] // Make sure to add this line
-    public TextMeshProUGUI targetTextMesh; // Reference to the TextMeshPro you want to change
-    public Button buttonA;
-    public Button buttonB;
-    public Button buttonC;
+    [SerializeField]
+    public TextMeshProUGUI targetTextMesh;
     public TextMeshProUGUI buttonAText;
     public TextMeshProUGUI buttonBText;
     public TextMeshProUGUI buttonCText;
 
+    private int conversationState = 0;
 
     void Start()
     {
-        buttonAText.text = SallyA;
-        buttonBText.text = SallyB;
-        buttonCText.text = SallyC;
-        targetTextMesh.text = "whats up buddy";
+        UpdateConversation(0);
     }
+
+
+    void UpdateConversation(int state)
+    {
+        conversationState = state;
+
+        switch (conversationState)
+        {
+            case 0:
+                buttonAText.text = SallyA;
+                buttonBText.text = SallyB;
+                buttonCText.text = SallyC;
+                targetTextMesh.text = "Hi, I'm here to pick up my daugther. She forgot her homework and I need to give it to her.";
+                break;
+            case 1:
+                buttonAText.text = SallyCA;
+                buttonBText.text = SallyCB;
+                buttonCText.text = SallyCC;
+                targetTextMesh.text = SallyReplyC;
+                break;
+            case 2:
+                buttonAText.text = SallyCCA;
+                buttonBText.text = SallyCCB;
+                buttonCText.text = SallyCCC;
+                targetTextMesh.text = SallyReplyCC;
+                break;
+        }
+    }
+
+
+    public void OnButtonClick(int buttonIndex)
+    {
+        switch (conversationState)
+        {
+            case 0:
+                switch (buttonIndex)
+                {
+                    case 0:
+                        firstAnswerSallyA();
+                        break;
+                    case 1:
+                        firstAnswerSallyB();
+                        break;
+                    case 2:
+                        firstAnswerSallyC();
+                        break;
+                }
+                break;
+            case 1:
+                switch (buttonIndex)
+                {
+                    case 0:
+                        secondAnswerSallyCA();
+                        break;
+                    case 1:
+                        secondAnswerSallyCB();
+                        break;
+                    case 2:
+                        secondAnswerSallyCC();
+                        break;
+                }
+                break;
+            case 2:
+                switch (buttonIndex)
+                {
+                    case 0:
+                        thirdAnswerSallyCCA();
+                        break;
+                    case 1:
+                        thirdAnswerSallyCCB();
+                        break;
+                    case 2:
+                        thirdAnswerSallyCCC();
+                        break;
+                }
+                break;
+        }
+    }
+
+
+
+    // Modify the answer functions to call UpdateConversation()
     public void firstAnswerSallyA()
     {
         targetTextMesh.text = SallyReplyA;
@@ -71,6 +149,7 @@ public class Gameplay : MonoBehaviour
     public void firstAnswerSallyC()
     {
         targetTextMesh.text = SallyReplyC;
+        UpdateConversation(1);
     }
 
     public void secondAnswerSallyCA()
@@ -86,8 +165,8 @@ public class Gameplay : MonoBehaviour
     public void secondAnswerSallyCC()
     {
         targetTextMesh.text = SallyReplyCC;
+        UpdateConversation(2);
     }
-
 
     public void thirdAnswerSallyCCA()
     {
@@ -103,10 +182,4 @@ public class Gameplay : MonoBehaviour
     {
         targetTextMesh.text = SallyReplyCCC;
     }
-
-
-
-
-
-
 }
