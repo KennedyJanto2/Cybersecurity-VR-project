@@ -65,6 +65,7 @@ public class DialogueControl : MonoBehaviour
     public void OnMouseDown()
     {
         Debug.Log("Testing");
+
         currentPOS += gameObject.name;
 
         while(currentPOS != SallyC && currentPOS != SallyCC && currentPOS != SallyCCC) {
@@ -161,10 +162,10 @@ public class DialogueControl : MonoBehaviour
 
             }
 
-
+            break;
         }
 
-  
+        
 
 
     }
