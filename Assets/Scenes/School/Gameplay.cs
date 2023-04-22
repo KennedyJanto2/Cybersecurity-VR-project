@@ -46,9 +46,12 @@ public class Gameplay : MonoBehaviour
     public TextMeshProUGUI buttonAText;
     public TextMeshProUGUI buttonBText;
     public TextMeshProUGUI buttonCText;
+    public TextMeshProUGUI scoreText;
+
 public Button buttonA;
 public Button buttonB;
 public Button buttonC;
+private int score = 0;
 
     private int conversationState = 0;
 
@@ -61,7 +64,10 @@ public Button buttonC;
 }
 
 
-
+    void updateScore(){
+        score++;
+        scoreText.text= "Score: " + score;
+    }
     void UpdateConversation(int state)
     {
         conversationState = state;
@@ -80,60 +86,64 @@ public Button buttonC;
 
 
     public void OnButtonClick(int buttonIndex)
+{
+    switch (conversationState)
     {
-        switch (conversationState)
-        {
-            case 0:
-                switch (buttonIndex)
-                {
-                    case 0:
-                        targetTextMesh.text = SallyReplyA;
-                        break;
-                    case 1:
-                        targetTextMesh.text = SallyReplyB;
-                        break; 
-                    case 2:
-                        targetTextMesh.text = SallyReplyC;
-                        buttonAText.text=SallyCA;
-                        buttonBText.text=SallyCB;
-                        buttonCText.text=SallyCC;
-                        conversationState++;
-                        break;
-                }
-                break;
-            case 1:
-                switch (buttonIndex)
-                {
-                    case 0:
-                        targetTextMesh.text = SallyReplyCA;
-                        break;
-                    case 1:
-                        targetTextMesh.text = SallyReplyCB;
-                        break;
-                    case 2:
-                        targetTextMesh.text = SallyReplyCC;
-                        buttonAText.text=SallyCCA;
-                        buttonBText.text=SallyCCB;
-                        buttonCText.text=SallyCCC;
-                        conversationState++;
-                        break;
-                }
-                break;
-            case 2:
-                switch (buttonIndex)
-                {
-                    case 0:
-                        targetTextMesh.text = SallyReplyCCA;
-                        break;
-                    case 1:
-                        targetTextMesh.text = SallyReplyCCB;
-                        break;
-                    case 2:
-                        targetTextMesh.text = SallyReplyCCC;
-                        break;
-                }
-                break;
-        }
+        case 0:
+            switch (buttonIndex)
+            {
+                case 0:
+                    targetTextMesh.text = SallyReplyA;
+                    break;
+                case 1:
+                    targetTextMesh.text = SallyReplyB;
+                    break; 
+                case 2:
+                    targetTextMesh.text = SallyReplyC;
+                    buttonAText.text=SallyCA;
+                    buttonBText.text=SallyCB;
+                    buttonCText.text=SallyCC;
+                    conversationState++;
+                    updateScore(); // Increment score for the correct answer
+                    break;
+            }
+            break;
+        case 1:
+            switch (buttonIndex)
+            {
+                case 0:
+                    targetTextMesh.text = SallyReplyCA;
+                    break;
+                case 1:
+                    targetTextMesh.text = SallyReplyCB;
+                    break;
+                case 2:
+                    targetTextMesh.text = SallyReplyCC;
+                    buttonAText.text=SallyCCA;
+                    buttonBText.text=SallyCCB;
+                    buttonCText.text=SallyCCC;
+                    conversationState++;
+                    updateScore(); // Increment score for the correct answer
+                    break;
+            }
+            break;
+        case 2:
+            switch (buttonIndex)
+            {
+                case 0:
+                    targetTextMesh.text = SallyReplyCCA;
+                    break;
+                case 1:
+                    targetTextMesh.text = SallyReplyCCB;
+                    break;
+                case 2:
+                    targetTextMesh.text = SallyReplyCCC;
+                    updateScore(); // Increment score for the correct answer
+                    break;
+            }
+            break;
     }
+}
+
 
 }

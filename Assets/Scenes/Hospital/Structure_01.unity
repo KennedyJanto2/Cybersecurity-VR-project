@@ -38844,8 +38844,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1159543890}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -14.522, y: 0.907, z: 9.541}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalPosition: {x: -14.123, y: 1.043, z: 9.794}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children:
   - {fileID: 949384279}
   - {fileID: 50303871}
@@ -51573,14 +51573,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1552360616}
         m_TargetAssemblyTypeName: USBInsert, Assembly-CSharp
-        m_MethodName: onInsert
-        m_Mode: 1
+        m_MethodName: OnInsert
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: You got hacked bro
           m_BoolArgument: 0
         m_CallState: 2
   OnRemove:
@@ -51604,9 +51604,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02529e10b427ccf41928eee065ef03c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  USB: {fileID: 1993527839}
-  canvas: {fileID: 885838051}
-  newSprite: {fileID: 21300000, guid: b3035b08c34ec5a4cb144a0f1c0ed34d, type: 3}
+  playerCamera: {fileID: 0}
+  blackoutCanvas: {fileID: 497055388}
+  textCon: {fileID: 2071088943}
+  textObj: {fileID: 542482371}
+  fadeInDuration: 5
 --- !u!1001 &1552746860
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -65999,7 +66001,7 @@ Transform:
   m_GameObject: {fileID: 1993527839}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -12.488, y: 1.756159, z: 11.806}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
