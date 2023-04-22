@@ -16,7 +16,6 @@ public class Gameplay : MonoBehaviour
 
     string SallyReplyA = "This is a potential threat because we do not know if her daughter really goes to this school. There can be ill intent. Try again.";
     string SallyReplyB = "This may be a real parent. Also refusing her on the spot is a little rude. Try again.";
-
     string SallyReplyC = "Oh, I must have left it in the car. Can't you just let me in? I promise it will be real quick.";
 
     string SallyCA = "Understand her position and let her in.";
@@ -47,13 +46,20 @@ public class Gameplay : MonoBehaviour
     public TextMeshProUGUI buttonAText;
     public TextMeshProUGUI buttonBText;
     public TextMeshProUGUI buttonCText;
+public Button buttonA;
+public Button buttonB;
+public Button buttonC;
 
     private int conversationState = 0;
 
     void Start()
-    {
-        UpdateConversation(0);
-    }
+{
+    UpdateConversation(0);
+    buttonA.onClick.AddListener(() => OnButtonClick(0));
+    buttonB.onClick.AddListener(() => OnButtonClick(1));
+    buttonC.onClick.AddListener(() => OnButtonClick(2));
+}
+
 
 
     void UpdateConversation(int state)
@@ -68,18 +74,7 @@ public class Gameplay : MonoBehaviour
                 buttonCText.text = SallyC;
                 targetTextMesh.text = "Hi, I'm here to pick up my daugther. She forgot her homework and I need to give it to her.";
                 break;
-            case 1:
-                buttonAText.text = SallyCA;
-                buttonBText.text = SallyCB;
-                buttonCText.text = SallyCC;
-                targetTextMesh.text = SallyReplyC;
-                break;
-            case 2:
-                buttonAText.text = SallyCCA;
-                buttonBText.text = SallyCCB;
-                buttonCText.text = SallyCCC;
-                targetTextMesh.text = SallyReplyCC;
-                break;
+            
         }
     }
 
@@ -92,13 +87,17 @@ public class Gameplay : MonoBehaviour
                 switch (buttonIndex)
                 {
                     case 0:
-                        firstAnswerSallyA();
+                        targetTextMesh.text = SallyReplyA;
                         break;
                     case 1:
-                        firstAnswerSallyB();
-                        break;
+                        targetTextMesh.text = SallyReplyB;
+                        break; 
                     case 2:
-                        firstAnswerSallyC();
+                        targetTextMesh.text = SallyReplyC;
+                        buttonAText.text=SallyCA;
+                        buttonBText.text=SallyCB;
+                        buttonCText.text=SallyCC;
+                        conversationState++;
                         break;
                 }
                 break;
@@ -106,13 +105,17 @@ public class Gameplay : MonoBehaviour
                 switch (buttonIndex)
                 {
                     case 0:
-                        secondAnswerSallyCA();
+                        targetTextMesh.text = SallyReplyCA;
                         break;
                     case 1:
-                        secondAnswerSallyCB();
+                        targetTextMesh.text = SallyReplyCB;
                         break;
                     case 2:
-                        secondAnswerSallyCC();
+                        targetTextMesh.text = SallyReplyCC;
+                        buttonAText.text=SallyCCA;
+                        buttonBText.text=SallyCCB;
+                        buttonCText.text=SallyCCC;
+                        conversationState++;
                         break;
                 }
                 break;
@@ -120,66 +123,17 @@ public class Gameplay : MonoBehaviour
                 switch (buttonIndex)
                 {
                     case 0:
-                        thirdAnswerSallyCCA();
+                        targetTextMesh.text = SallyReplyCCA;
                         break;
                     case 1:
-                        thirdAnswerSallyCCB();
+                        targetTextMesh.text = SallyReplyCCB;
                         break;
                     case 2:
-                        thirdAnswerSallyCCC();
+                        targetTextMesh.text = SallyReplyCCC;
                         break;
                 }
                 break;
         }
     }
 
-
-
-    // Modify the answer functions to call UpdateConversation()
-    public void firstAnswerSallyA()
-    {
-        targetTextMesh.text = SallyReplyA;
-    }
-
-    public void firstAnswerSallyB()
-    {
-        targetTextMesh.text = SallyReplyB;
-    }
-
-    public void firstAnswerSallyC()
-    {
-        targetTextMesh.text = SallyReplyC;
-        UpdateConversation(1);
-    }
-
-    public void secondAnswerSallyCA()
-    {
-        targetTextMesh.text = SallyReplyCA;
-    }
-
-    public void secondAnswerSallyCB()
-    {
-        targetTextMesh.text = SallyReplyCB;
-    }
-
-    public void secondAnswerSallyCC()
-    {
-        targetTextMesh.text = SallyReplyCC;
-        UpdateConversation(2);
-    }
-
-    public void thirdAnswerSallyCCA()
-    {
-        targetTextMesh.text = SallyReplyCCA;
-    }
-
-    public void thirdAnswerSallyCCB()
-    {
-        targetTextMesh.text = SallyReplyCCB;
-    }
-
-    public void thirdAnswerSallyCCC()
-    {
-        targetTextMesh.text = SallyReplyCCC;
-    }
 }
