@@ -3061,6 +3061,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 746c7fe79fa2b6544805d12c2d0773f9, type: 3}
+--- !u!1 &98485175 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1927095934725912876, guid: a9b081014bad86f4a80b60284279d21b, type: 3}
+  m_PrefabInstance: {fileID: 1868768336}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &98485176
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 98485175}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2.0640457
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.088632464, z: 0}
 --- !u!1001 &99615003
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17440,7 +17459,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &497055389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18817,7 +18836,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Objective: interact with the hand stand in front of the bank to go inside'
+  m_text: 'Objective: Explore around'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -38843,8 +38862,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1159543890}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -14.123, y: 1.043, z: 9.794}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -13.732, y: 1.043, z: 12.4}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children:
   - {fileID: 949384279}
@@ -38853,7 +38872,7 @@ Transform:
   - {fileID: 1552360614}
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1161310809 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 688455081225626027, guid: cf662b63134ae2f4e9872caf7917a830, type: 3}
@@ -49422,7 +49441,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &1487676294
 Canvas:
   m_ObjectHideFlags: 0
@@ -62346,15 +62365,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1927095934725912877, guid: a9b081014bad86f4a80b60284279d21b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.620001
+      value: -9.74
       objectReference: {fileID: 0}
     - target: {fileID: 1927095934725912877, guid: a9b081014bad86f4a80b60284279d21b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2
+      value: -1.023
       objectReference: {fileID: 0}
     - target: {fileID: 1927095934725912877, guid: a9b081014bad86f4a80b60284279d21b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 28.640001
+      value: 9.04
       objectReference: {fileID: 0}
     - target: {fileID: 1927095934725912877, guid: a9b081014bad86f4a80b60284279d21b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -66000,7 +66019,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1993527839}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.488, y: 1.756159, z: 11.806}
+  m_LocalPosition: {x: -11.875, y: 1.756159, z: 11.451}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children: []
   m_Father: {fileID: 0}
@@ -69412,6 +69431,66 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3101693193403620863, guid: ef4cb5ad9df3fe44294f3c385ea458f6, type: 3}
   m_PrefabInstance: {fileID: 1232478647}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2103904929
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2103904932}
+  - component: {fileID: 2103904931}
+  - component: {fileID: 2103904930}
+  m_Layer: 0
+  m_Name: DoorKnockZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2103904930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2103904929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8bd37610f37ee14e81600b824a601a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 15309ed9189b67f4a99ceccd0567b5cf, type: 3}
+  audioPosition: {x: -9, y: -1, z: 18}
+  Objective: {fileID: 0}
+--- !u!65 &2103904931
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2103904929}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.4859858, y: 1, z: 3.6144438}
+  m_Center: {x: 0.09982443, y: 0, z: -1.3072219}
+--- !u!4 &2103904932
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2103904929}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -12.23, y: 1.18, z: 15.08}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2109347315 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7935460463090042302, guid: 8e68e9de2159f1641bd3a7a8eae19c0e, type: 3}
