@@ -6,7 +6,7 @@ public class HandScannerInteraction : MonoBehaviour
     public GameObject player;
     public Animation doorAnimation;
 
-    private void OnCollisionEnter(Collision collision)
+    public void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject == player)
         {

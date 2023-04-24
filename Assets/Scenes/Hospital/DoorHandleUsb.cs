@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class DoorHandleUsb : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+   
+
+    public void OnGrabbed()
     {
+        Debug.Log("handle grabbed");
+
+            
+
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
