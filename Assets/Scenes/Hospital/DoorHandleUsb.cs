@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class DoorHandleUsb : MonoBehaviour
 {
-   
-
-    public void OnGrabbed()
+    // Create a public method for the grab event
+    public void OnHandleGrabbed()
     {
         Debug.Log("handle grabbed");
-
-            
-
-        
     }
-
 }
