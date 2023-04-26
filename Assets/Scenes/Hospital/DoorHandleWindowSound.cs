@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class ZoneAudioController : MonoBehaviour
+public class DoorHandleWindowSound : MonoBehaviour
 {
     [Header("Audio Settings")]
     [SerializeField] private AudioClip audioClip;
     [SerializeField] private Vector3 audioPosition;
     private AudioSource audioSource;
     public TextMeshProUGUI NextObjective;
-        public TextMeshProUGUI PrevObjective;
+    public TextMeshProUGUI PrevObjective;
+    public GameObject USB;
 
 
     void Start()
@@ -20,20 +21,19 @@ public class ZoneAudioController : MonoBehaviour
         audioSource.spatialBlend = 1f;
         audioSource.loop = true;
         audioSource.playOnAwake = false;
+        USB.SetActive(false);
     }
 
-    void OnTriggerEnter(Collider other)
+    public void onGrabbed()
     {
-        if (other.CompareTag("Player"))
-        {
+
             audioSource.transform.position = audioPosition;
             audioSource.Play();
-            NextObjective.text="Seems like someone is knocking on the door, try opening the door";
-            PrevObjective.text="";  
-        }
+            PrevObjective.text=""; 
+            NextObjective.text="Where did this usb come from?";
+                    USB.SetActive(true);
+
+             
+        
     }
-
-    
-
-   
 }
