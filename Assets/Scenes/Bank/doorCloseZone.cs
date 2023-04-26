@@ -12,7 +12,6 @@ public class doorCloseZone : MonoBehaviour
     {
         if (collision.gameObject == player)
         {
-            
             doorAnimation.Play("Close");
             zone.SetActive(false);
         }
