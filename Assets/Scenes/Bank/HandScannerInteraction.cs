@@ -6,14 +6,13 @@ public class HandScannerInteraction : MonoBehaviour
     public GameObject player;
     public Animation doorAnimation;
 
-    public void OnCollisionEnter(Collision collision)
+    public void OnHilighted()
     {
-        if (collision.gameObject == player)
-        {
+       
             
             doorAnimation.Play("Open");
 
-        }
+       
     }
 
     

@@ -9,12 +9,11 @@ public class USBGrabbed : MonoBehaviour
     public TextMeshProUGUI PrevObjective;
     public GameObject usbPort;
     public GameObject tablePlace;
-public Material glowMaterial;
+    public Material glowMaterial;
     private Material originalMaterial1;
-        private Material originalMaterial2;
-
+    private Material originalMaterial2;
     private Renderer objectRenderer1;
-        private Renderer objectRenderer2;
+    private Renderer objectRenderer2;
 
 
 public float maxGlowIntensity = 133f;
@@ -53,7 +52,7 @@ public float maxGlowIntensity = 133f;
             float glowIntensity = (Mathf.Sin(Time.time * glowSpeed) * 0.5f + 0.5f) * maxGlowIntensity;
             Color emissionColor = glowMaterial.GetColor("_Color") * glowIntensity;
             objectRenderer1.material.SetColor("_Color", emissionColor);
-                        objectRenderer2.material.SetColor("_Color", emissionColor);
+            objectRenderer2.material.SetColor("_Color", emissionColor);
 
         }
     }
