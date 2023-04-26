@@ -5,17 +5,17 @@ using System.Collections;
 
 public class USBInsert : MonoBehaviour
 {
-    public TextMeshProUGUI NextObjective1;
-    public TextMeshProUGUI NextObjective2;
+    public GameObject NextObjective1;
+    public GameObject NextObjective2;
     public TextMeshProUGUI PrevObjective;
     public void OnPlace1()
     {
         PrevObjective.text=""; 
-        NextObjective1.text="You got hacked bro click the button to go back";
+        NextObjective1.SetActive(true);
     }
     public void OnPlace2()
     {
         PrevObjective.text=""; 
-        NextObjective2.text="You did the right thing click the button to go back";
+        NextObjective2.SetActive(true);
     }
 }
